@@ -10,18 +10,6 @@
 
 A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages with appropriate emojis.
 
-![Step 1: Add OpenAI API Key](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss1.png)
-
-*Add your OpenAI API key to the .env file*
-
-![Step 2: Use Commity CLI Command](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss2.png)
-
-*Run the commity command in terminal*
-
-![Step 3: Generated Commit Message](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss3.png)
-
-*View the AI-generated commit message and successful commit*
-
 ## ✨ Features
 
 - 🧠 **AI-Powered**: Uses OpenAI GPT models for intelligent commit messages
@@ -44,11 +32,23 @@ echo "OPENAI_API_KEY=sk-your-api-key-here" > .env
 ```
 Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
+![Step 1: Add OpenAI API Key](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss1.png)
+
+*Add your OpenAI API key to the .env file*
+
 ### 3. Use
 ```bash
 git add <files>
 commity
 ```
+
+![Step 2: Use Commity CLI Command](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss2.png)
+
+*Run the commity command in terminal*
+
+![Step 3: Generated Commit Message](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss3.png)
+
+*View the AI-generated commit message and successful commit*
 
 ## 📋 Example Usage
 
