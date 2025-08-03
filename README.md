@@ -1,10 +1,14 @@
+<div align="center">
+
+![Commity Logo](logo.png)
+
 # 🤖 Commity
 
 > **AI-powered Git commit messages with dynamic emoji selection**
 
-A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages with appropriate emojis.
+</div>
 
-![Commity Logo](logo.png)
+A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages with appropriate emojis.
 
 ![Step 1: Add OpenAI API Key](ss1.png)
 
