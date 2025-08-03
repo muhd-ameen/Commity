@@ -5,12 +5,15 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 ## 📸 Extension Flow Screenshots
 
 ![Step 1: Add OpenAI API Key](ss1.png)
+
 *Add your OpenAI API key to the .env file*
 
 ![Step 2: Use Commity CLI Command](ss2.png)
+
 *Run the commity command in terminal*
 
 ![Step 3: Generated Commit Message](ss3.png)
+
 *View the AI-generated commit message and successful commit*
 
 ## ✨ Features

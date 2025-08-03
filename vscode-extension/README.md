@@ -5,12 +5,15 @@ A VS Code extension that generates intelligent Git commit messages using OpenAI 
 ## 📸 Extension Flow Screenshots
 
 ![Step 1: Add OpenAI API Key](../ss1.png)
+
 *Add your OpenAI API key to the .env file*
 
 ![Step 2: Use Commity CLI Command](../ss2.png)
+
 *Run the commity command in terminal*
 
 ![Step 3: Generated Commit Message](../ss3.png)
+
 *View the AI-generated commit message and successful commit*
 
 ## ✨ Features
