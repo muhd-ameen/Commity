@@ -14,7 +14,7 @@
 2. Click "Sign in" with your Microsoft account
 3. Click "Publish extensions"
 4. Create a new publisher:
-   - Choose a unique publisher name (e.g., "yourname" or "commity")
+   - Choose a unique publisher name (e.g., "emeenx" or "commity")
    - Fill in publisher details
    - Accept terms and conditions
 

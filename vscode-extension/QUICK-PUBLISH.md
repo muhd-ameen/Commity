@@ -6,7 +6,7 @@
 - Go to: https://marketplace.visualstudio.com/
 - Sign in with Microsoft account
 - Click "Publish extensions"
-- Create publisher (e.g., "yourname")
+- Create publisher (e.g., "emeenx")
 
 ### 2. Generate Personal Access Token
 - Go to: https://dev.azure.com/

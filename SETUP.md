@@ -110,9 +110,9 @@ npm run compile
 3. **Alternative: Settings JSON**:
    ```json
    {
-     "aiCommitTool.openaiApiKey": "sk-your-api-key-here",
-     "aiCommitTool.openaiModel": "gpt-4o-mini",
-     "aiCommitTool.enableEmojis": true
+     "commity.openaiApiKey": "sk-your-api-key-here",
+     "commity.openaiModel": "gpt-4o-mini",
+"commity.enableEmojis": true
    }
    ```
 

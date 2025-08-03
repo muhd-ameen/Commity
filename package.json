@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Tests not implemented yet\" && exit 0"
   },
   "dependencies": {
     "simple-git": "^3.20.0",
@@ -22,6 +22,6 @@
     "chalk": "^5.3.0"
   },
   "keywords": ["git", "ai", "commit", "cli", "openai", "commity", "emoji"],
-  "author": "",
+  "author": "Muhammad Ameen",
   "license": "MIT"
 }

@@ -77,7 +77,7 @@ A VS Code extension that generates intelligent Git commit messages using OpenAI 
 Add to your `settings.json`:
 ```json
 {
-  "commity.openaiApiKey": "sk-your-api-key-here",
+  "commity.openaiApiKey": "sk-your-actual-api-key-here",
   "commity.openaiModel": "gpt-4o-mini",
   "commity.enableEmojis": true
 }
