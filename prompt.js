@@ -86,7 +86,7 @@ export async function askToStageChanges() {
  * Display help information
  */
 export function displayHelp() {
-  console.log(chalk.blue('🤖 AI Commit Tool - Help\n'));
+  console.log(chalk.blue('🤖 Commity - Help\n'));
   
   console.log(chalk.white('Usage:'));
   console.log(chalk.gray('  node index.js\n'));

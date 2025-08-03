@@ -1,0 +1,221 @@
+import OpenAI from 'openai';
+
+// Lazy initialization of OpenAI client
+let openai: OpenAI | null = null;
+
+function getOpenAIClient(): OpenAI {
+  if (!openai) {
+    openai = new OpenAI({
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+  }
+  return openai;
+}
+
+/**
+ * Analyze diff to determine the type of changes and suggest appropriate emoji
+ * @param diff - The git diff output
+ * @returns The appropriate emoji for the changes
+ */
+export function analyzeDiffForEmoji(diff: string): string {
+  const lowerDiff = diff.toLowerCase();
+  
+  // Bug fixes (check first to avoid conflicts with "add")
+  if (lowerDiff.includes('fix') || lowerDiff.includes('bug') || lowerDiff.includes('error') || 
+      lowerDiff.includes('issue') || lowerDiff.includes('problem') || lowerDiff.includes('exception')) {
+    return '🐛';
+  }
+  
+  // Performance improvements (check before feature additions)
+  if (lowerDiff.includes('performance') || lowerDiff.includes('optimize') || lowerDiff.includes('speed') ||
+      lowerDiff.includes('fast') || lowerDiff.includes('efficient') || lowerDiff.includes('cache')) {
+    return '⚡';
+  }
+  
+  // Feature additions
+  if (lowerDiff.includes('add') || lowerDiff.includes('new') || lowerDiff.includes('create') || 
+      lowerDiff.includes('implement') || lowerDiff.includes('introduce')) {
+    return '✨';
+  }
+  
+  // Documentation
+  if (lowerDiff.includes('readme') || lowerDiff.includes('docs') || lowerDiff.includes('documentation') ||
+      lowerDiff.includes('comment') || lowerDiff.includes('doc')) {
+    return '📚';
+  }
+  
+  // Refactoring
+  if (lowerDiff.includes('refactor') || lowerDiff.includes('restructure') || lowerDiff.includes('clean') ||
+      lowerDiff.includes('improve') || lowerDiff.includes('update')) {
+    return '♻️';
+  }
+  
+  // Testing
+  if (lowerDiff.includes('test') || lowerDiff.includes('spec') || lowerDiff.includes('unit') ||
+      lowerDiff.includes('integration') || lowerDiff.includes('coverage')) {
+    return '🧪';
+  }
+  
+  // Configuration changes
+  if (lowerDiff.includes('config') || lowerDiff.includes('setting') || lowerDiff.includes('env') ||
+      lowerDiff.includes('package.json') || lowerDiff.includes('dependencies')) {
+    return '⚙️';
+  }
+  
+  // Security
+  if (lowerDiff.includes('security') || lowerDiff.includes('vulnerability') || lowerDiff.includes('auth') ||
+      lowerDiff.includes('password') || lowerDiff.includes('token')) {
+    return '🔒';
+  }
+  
+  // UI/UX changes
+  if (lowerDiff.includes('ui') || lowerDiff.includes('ux') || lowerDiff.includes('style') ||
+      lowerDiff.includes('css') || lowerDiff.includes('design') || lowerDiff.includes('layout')) {
+    return '🎨';
+  }
+  
+  // Database changes
+  if (lowerDiff.includes('database') || lowerDiff.includes('db') || lowerDiff.includes('sql') ||
+      lowerDiff.includes('migration') || lowerDiff.includes('schema')) {
+    return '🗄️';
+  }
+  
+  // API changes
+  if (lowerDiff.includes('api') || lowerDiff.includes('endpoint') || lowerDiff.includes('route') ||
+      lowerDiff.includes('controller') || lowerDiff.includes('service')) {
+    return '🔌';
+  }
+  
+  // Deployment/CI/CD
+  if (lowerDiff.includes('deploy') || lowerDiff.includes('ci') || lowerDiff.includes('cd') ||
+      lowerDiff.includes('pipeline') || lowerDiff.includes('docker') || lowerDiff.includes('build')) {
+    return '🚀';
+  }
+  
+  // Dependencies
+  if (lowerDiff.includes('package.json') || lowerDiff.includes('dependencies') || lowerDiff.includes('npm') ||
+      lowerDiff.includes('yarn') || lowerDiff.includes('install')) {
+    return '📦';
+  }
+  
+  // Default for general changes
+  return '📝';
+}
+
+/**
+ * Create the prompt for the AI model
+ * @param diff - The git diff output
+ * @returns The formatted prompt
+ */
+function createCommitPrompt(diff: string): string {
+  // Truncate very long diffs to avoid token limits
+  const maxDiffLength = 8000;
+  const truncatedDiff = diff.length > maxDiffLength 
+    ? diff.substring(0, maxDiffLength) + '\n\n... (diff truncated for brevity)'
+    : diff;
+
+  // Analyze diff to determine appropriate emoji
+  const emoji = analyzeDiffForEmoji(diff);
+
+  return `Generate a clear and concise git commit message for the following staged changes. 
+
+The commit message should:
+- Start with the emoji: ${emoji}
+- Be written in the imperative mood (e.g., "Add feature" not "Added feature")
+- Be concise but descriptive (ideally under 72 characters)
+- Focus on what the change does, not how it does it
+- Not include unnecessary punctuation or quotes
+- Follow conventional commit format if appropriate (feat:, fix:, docs:, etc.)
+
+Here are the staged changes:
+
+${truncatedDiff}
+
+Respond with just the commit message starting with the emoji, nothing else.`;
+}
+
+/**
+ * Clean and validate the AI-generated commit message
+ * @param message - The raw message from AI
+ * @returns The cleaned message
+ */
+function cleanCommitMessage(message: string): string {
+  // Remove quotes if present
+  let cleaned = message.replace(/^["']|["']$/g, '');
+  
+  // Remove any extra whitespace
+  cleaned = cleaned.trim();
+  
+  // Remove trailing periods unless it's part of an abbreviation
+  cleaned = cleaned.replace(/\.$/, '');
+  
+  // Ensure the message starts with an emoji
+  const emojiRegex = /^[^\w\s]*[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}][^\w\s]*/u;
+  
+  if (!emojiRegex.test(cleaned)) {
+    // If no emoji at the start, add a default one
+    cleaned = '📝 ' + cleaned;
+  }
+  
+  // Ensure first letter after emoji is capitalized if not using conventional commit format
+  const afterEmoji = cleaned.replace(/^[^\w\s]*[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}][^\w\s]*/u, '').trim();
+  
+  if (!afterEmoji.match(/^(feat|fix|docs|style|refactor|perf|test|chore|build|ci):/i)) {
+    // Capitalize the first letter after emoji
+    const capitalizedAfterEmoji = afterEmoji.charAt(0).toUpperCase() + afterEmoji.slice(1);
+    cleaned = cleaned.replace(afterEmoji, capitalizedAfterEmoji);
+  }
+  
+  return cleaned;
+}
+
+/**
+ * Generate a commit message using OpenAI
+ * @param diff - The git diff output
+ * @returns The generated commit message
+ */
+export async function generateCommitMessage(diff: string): Promise<string> {
+  try {
+    if (!diff || diff.trim() === '') {
+      throw new Error('No diff provided for commit message generation');
+    }
+
+    const model = process.env.OPENAI_MODEL || 'gpt-4o-mini';
+    
+    const prompt = createCommitPrompt(diff);
+    
+    const completion = await getOpenAIClient().chat.completions.create({
+      model: model,
+      messages: [
+        {
+          role: 'system',
+          content: 'You are a helpful assistant that writes clear and concise git commit messages following best practices.'
+        },
+        {
+          role: 'user',
+          content: prompt
+        }
+      ],
+      max_tokens: 100,
+      temperature: 0.7,
+    });
+
+    const message = completion.choices[0]?.message?.content?.trim();
+    
+    if (!message) {
+      throw new Error('No commit message generated by AI');
+    }
+
+    return cleanCommitMessage(message);
+  } catch (error: any) {
+    if (error.status === 401) {
+      throw new Error('Invalid OpenAI API key. Please check your VS Code settings.');
+    } else if (error.status === 429) {
+      throw new Error('OpenAI API rate limit exceeded. Please try again later.');
+    } else if (error.status === 500) {
+      throw new Error('OpenAI API server error. Please try again later.');
+    }
+    
+    throw new Error(`Failed to generate commit message: ${error.message}`);
+  }
+} 

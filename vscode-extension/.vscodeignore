@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Source files (not needed in package)
+src/
+tsconfig.json
+tsconfig.tsbuildinfo
+
+# Development files
+.vscode/
+.git/
+.gitignore
+.eslintrc.json
+*.log
+
+# Documentation
+PUBLISHING.md
+*.md
+!readme.md
+
+# Build artifacts
+out/*.map
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test files
+test/
+*.test.js
+*.spec.js
+
+# Temporary files
+*.tmp
+*.temp 

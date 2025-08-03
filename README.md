@@ -1,4 +1,4 @@
-# 🤖 AI Commit Tool
+# 🤖 Commity - AI Commit Tool
 
 A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages.
 
@@ -14,47 +14,65 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 
 ## 🚀 Quick Start
 
-### 1. Install Dependencies
+### Method 1: VS Code Extension + CLI (Recommended)
 
-```bash
-npm install
-```
+1. **Install VS Code Extension**:
+   - Open VS Code
+   - Go to Extensions (Ctrl+Shift+X)
+   - Search for "Commity"
+   - Install the extension
 
-### 2. Set up OpenAI API Key
+2. **Configure API Key in VS Code**:
+   - Go to Settings (Ctrl+,)
+   - Search for "Commity"
+   - Enter your OpenAI API key
 
-1. Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-2. Copy `.env.example` to `.env`:
+3. **Install CLI Tool**:
    ```bash
-   cp .env.example .env
-   ```
-3. Add your API key to `.env`:
-   ```
-   OPENAI_API_KEY=sk-your-actual-api-key-here
+   ./install-cli.sh
    ```
 
-### 3. Stage Your Changes
+4. **Use from Command Line**:
+   ```bash
+   git add <files>
+   commity
+   ```
 
-```bash
-git add <files>
-```
+### Method 2: CLI Only
 
-### 4. Run the Tool
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-```bash
-npm start
-```
+2. **Set up OpenAI API Key**:
+   - Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+   - Copy `.env.example` to `.env`:
+     ```bash
+     cp .env.example .env
+     ```
+   - Add your API key to `.env`:
+     ```
+     OPENAI_API_KEY=sk-your-actual-api-key-here
+     ```
 
-Or run directly:
-```bash
-node index.js
-```
+3. **Install Globally**:
+   ```bash
+   npm link
+   ```
+
+4. **Use the Tool**:
+   ```bash
+   git add <files>
+   commity
+   ```
 
 ## 📋 Example Usage
 
 ```bash
 $ node index.js
 
-🤖 AI Commit Tool
+🤖 Commity - AI Commit Tool
 
 📖 Reading staged changes...
 🧠 Generating commit message with AI...
@@ -111,7 +129,7 @@ The tool automatically selects appropriate emojis based on your changes:
 ### Project Structure
 
 ```
-ai-commit-toy/
+commity/
 ├── .env              # Environment variables
 ├── index.js          # Main CLI entry point
 ├── ai.js            # OpenAI API integration

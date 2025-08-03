@@ -11,7 +11,7 @@ dotenv.config();
 
 async function main() {
   try {
-    console.log(chalk.blue('🤖 AI Commit Tool\n'));
+    console.log(chalk.blue('🤖 Commity - AI Commit Tool\n'));
 
     // Check for OpenAI API key
     if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'sk-your-openai-api-key-here') {
