@@ -6,6 +6,7 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 
 - 📖 Reads staged Git changes automatically
 - 🧠 Generates commit messages using OpenAI GPT models
+- 🎯 Dynamic emoji selection based on change type
 - 💬 Interactive confirmation and editing
 - 🔒 Secure API key management
 - 🎨 Colored CLI output for better UX
@@ -59,7 +60,7 @@ $ node index.js
 🧠 Generating commit message with AI...
 
 💬 Suggested commit message:
-"Add user authentication with JWT tokens"
+"🐛 Fix authentication validation and error handling"
 
 ? What would you like to do? (Use arrow keys)
 ❯ Yes, use this message
@@ -69,6 +70,25 @@ $ node index.js
 ✅ Committed successfully!
 📝 Commit hash: a1b2c3d4
 ```
+
+### 🎯 Emoji Examples
+
+The tool automatically selects appropriate emojis based on your changes:
+
+- ✨ **Features**: New functionality, additions
+- 🐛 **Bug Fixes**: Error corrections, issue resolutions  
+- 📚 **Documentation**: README, docs, comments
+- ⚡ **Performance**: Optimizations, speed improvements
+- ♻️ **Refactoring**: Code restructuring, improvements
+- 🧪 **Testing**: Test files, specs, coverage
+- ⚙️ **Configuration**: Settings, env files, configs
+- 🔒 **Security**: Authentication, vulnerabilities
+- 🎨 **UI/UX**: Styling, design changes
+- 🗄️ **Database**: Schema changes, migrations
+- 🔌 **API**: Endpoints, routes, services
+- 🚀 **Deployment**: CI/CD, builds, deployment
+- 📦 **Dependencies**: Package updates, installations
+- 📝 **General**: Other changes
 
 ## ⚙️ Configuration
 

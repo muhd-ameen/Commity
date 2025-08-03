@@ -65,6 +65,104 @@ export async function generateCommitMessage(diff) {
 }
 
 /**
+ * Analyze diff to determine the type of changes and suggest appropriate emoji
+ * @param {string} diff - The git diff output
+ * @returns {string} The appropriate emoji for the changes
+ */
+export function analyzeDiffForEmoji(diff) {
+  const lowerDiff = diff.toLowerCase();
+  
+  // Bug fixes (check first to avoid conflicts with "add")
+  if (lowerDiff.includes('fix') || lowerDiff.includes('bug') || lowerDiff.includes('error') || 
+      lowerDiff.includes('issue') || lowerDiff.includes('problem') || lowerDiff.includes('exception')) {
+    return '🐛';
+  }
+  
+  // Performance improvements (check before feature additions)
+  if (lowerDiff.includes('performance') || lowerDiff.includes('optimize') || lowerDiff.includes('speed') ||
+      lowerDiff.includes('fast') || lowerDiff.includes('efficient') || lowerDiff.includes('cache')) {
+    return '⚡';
+  }
+  
+  // Feature additions
+  if (lowerDiff.includes('add') || lowerDiff.includes('new') || lowerDiff.includes('create') || 
+      lowerDiff.includes('implement') || lowerDiff.includes('introduce')) {
+    return '✨';
+  }
+  
+  // Performance improvements
+  if (lowerDiff.includes('performance') || lowerDiff.includes('optimize') || lowerDiff.includes('speed') ||
+      lowerDiff.includes('fast') || lowerDiff.includes('efficient') || lowerDiff.includes('cache')) {
+    return '⚡';
+  }
+  
+  // Documentation
+  if (lowerDiff.includes('readme') || lowerDiff.includes('docs') || lowerDiff.includes('documentation') ||
+      lowerDiff.includes('comment') || lowerDiff.includes('doc')) {
+    return '📚';
+  }
+  
+
+  
+  // Refactoring
+  if (lowerDiff.includes('refactor') || lowerDiff.includes('restructure') || lowerDiff.includes('clean') ||
+      lowerDiff.includes('improve') || lowerDiff.includes('update')) {
+    return '♻️';
+  }
+  
+  // Testing
+  if (lowerDiff.includes('test') || lowerDiff.includes('spec') || lowerDiff.includes('unit') ||
+      lowerDiff.includes('integration') || lowerDiff.includes('coverage')) {
+    return '🧪';
+  }
+  
+  // Configuration changes
+  if (lowerDiff.includes('config') || lowerDiff.includes('setting') || lowerDiff.includes('env') ||
+      lowerDiff.includes('package.json') || lowerDiff.includes('dependencies')) {
+    return '⚙️';
+  }
+  
+  // Security
+  if (lowerDiff.includes('security') || lowerDiff.includes('vulnerability') || lowerDiff.includes('auth') ||
+      lowerDiff.includes('password') || lowerDiff.includes('token')) {
+    return '🔒';
+  }
+  
+  // UI/UX changes
+  if (lowerDiff.includes('ui') || lowerDiff.includes('ux') || lowerDiff.includes('style') ||
+      lowerDiff.includes('css') || lowerDiff.includes('design') || lowerDiff.includes('layout')) {
+    return '🎨';
+  }
+  
+  // Database changes
+  if (lowerDiff.includes('database') || lowerDiff.includes('db') || lowerDiff.includes('sql') ||
+      lowerDiff.includes('migration') || lowerDiff.includes('schema')) {
+    return '🗄️';
+  }
+  
+  // API changes
+  if (lowerDiff.includes('api') || lowerDiff.includes('endpoint') || lowerDiff.includes('route') ||
+      lowerDiff.includes('controller') || lowerDiff.includes('service')) {
+    return '🔌';
+  }
+  
+  // Deployment/CI/CD
+  if (lowerDiff.includes('deploy') || lowerDiff.includes('ci') || lowerDiff.includes('cd') ||
+      lowerDiff.includes('pipeline') || lowerDiff.includes('docker') || lowerDiff.includes('build')) {
+    return '🚀';
+  }
+  
+  // Dependencies
+  if (lowerDiff.includes('package.json') || lowerDiff.includes('dependencies') || lowerDiff.includes('npm') ||
+      lowerDiff.includes('yarn') || lowerDiff.includes('install')) {
+    return '📦';
+  }
+  
+  // Default for general changes
+  return '📝';
+}
+
+/**
  * Create the prompt for the AI model
  * @param {string} diff - The git diff output
  * @returns {string} The formatted prompt
@@ -76,9 +174,13 @@ function createCommitPrompt(diff) {
     ? diff.substring(0, maxDiffLength) + '\n\n... (diff truncated for brevity)'
     : diff;
 
+  // Analyze diff to determine appropriate emoji
+  const emoji = analyzeDiffForEmoji(diff);
+
   return `Generate a clear and concise git commit message for the following staged changes. 
 
 The commit message should:
+- Start with the emoji: ${emoji}
 - Be written in the imperative mood (e.g., "Add feature" not "Added feature")
 - Be concise but descriptive (ideally under 72 characters)
 - Focus on what the change does, not how it does it
@@ -89,7 +191,7 @@ Here are the staged changes:
 
 ${truncatedDiff}
 
-Respond with just the commit message, nothing else.`;
+Respond with just the commit message starting with the emoji, nothing else.`;
 }
 
 /**
@@ -107,9 +209,21 @@ function cleanCommitMessage(message) {
   // Remove trailing periods unless it's part of an abbreviation
   cleaned = cleaned.replace(/\.$/, '');
   
-  // Ensure first letter is capitalized if not using conventional commit format
-  if (!cleaned.match(/^(feat|fix|docs|style|refactor|perf|test|chore|build|ci):/i)) {
-    cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+  // Ensure the message starts with an emoji
+  const emojiRegex = /^[^\w\s]*[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}][^\w\s]*/u;
+  
+  if (!emojiRegex.test(cleaned)) {
+    // If no emoji at the start, add a default one
+    cleaned = '📝 ' + cleaned;
+  }
+  
+  // Ensure first letter after emoji is capitalized if not using conventional commit format
+  const afterEmoji = cleaned.replace(/^[^\w\s]*[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F1E0}-\u{1F1FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}][^\w\s]*/u, '').trim();
+  
+  if (!afterEmoji.match(/^(feat|fix|docs|style|refactor|perf|test|chore|build|ci):/i)) {
+    // Capitalize the first letter after emoji
+    const capitalizedAfterEmoji = afterEmoji.charAt(0).toUpperCase() + afterEmoji.slice(1);
+    cleaned = cleaned.replace(afterEmoji, capitalizedAfterEmoji);
   }
   
   return cleaned;
