@@ -2,8 +2,6 @@
 
 A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages.
 
-## 📸 Extension Flow Screenshots
-
 ![Step 1: Add OpenAI API Key](ss1.png)
 
 *Add your OpenAI API key to the .env file*

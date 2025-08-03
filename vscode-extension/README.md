@@ -2,8 +2,6 @@
 
 A VS Code extension that generates intelligent Git commit messages using OpenAI with dynamic emoji selection.
 
-## 📸 Extension Flow Screenshots
-
 ![Step 1: Add OpenAI API Key](../ss1.png)
 
 *Add your OpenAI API key to the .env file*

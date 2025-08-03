@@ -2,7 +2,7 @@
   "name": "commity-ai-commit-tool",
   "displayName": "Commity - AI Commit Tool",
   "description": "Generate intelligent Git commit messages using AI with dynamic emoji selection",
-  "version": "1.0.15",
+  "version": "1.0.19",
   "icon": "logo.png",
   "publisher": "emeenx",
   "repository": {
@@ -36,7 +36,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "*"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -47,6 +47,13 @@
         "category": "Commity"
       }
     ],
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "commity.generateCommit"
+        }
+      ]
+    },
     "configuration": {
       "title": "Commity",
       "properties": {

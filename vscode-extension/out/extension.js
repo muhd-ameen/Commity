@@ -9,6 +9,8 @@ function activate(context) {
     // Register the command immediately
     console.log('Registering commity.generateCommit command...');
     let disposable = vscode.commands.registerCommand('commity.generateCommit', async () => {
+        // Show a notification that the command was triggered
+        vscode.window.showInformationMessage('🤖 Commity: Generating AI commit message...');
         try {
             // Get configuration
             const config = vscode.workspace.getConfiguration('commity');
