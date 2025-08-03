@@ -2,6 +2,17 @@
 
 A VS Code extension that generates intelligent Git commit messages using OpenAI with dynamic emoji selection.
 
+## 📸 Extension Flow Screenshots
+
+![Step 1: Install Extension](../ss1.png)
+*Install the Commity extension from VS Code marketplace*
+
+![Step 2: Configure Settings](../ss2.png)
+*Configure your OpenAI API key in VS Code settings*
+
+![Step 3: Generate Commit](../ss3.png)
+*Use the command palette to generate AI commit messages*
+
 ## ✨ Features
 
 - 🎯 **Dynamic Emoji Selection**: Automatically detects change types and adds appropriate emojis
@@ -98,17 +109,6 @@ Add to your `settings.json`:
    - Select the command
 
 3. **Review and commit**:
-
-### 📸 Extension Flow Screenshots
-
-![Step 1: Install Extension](../ss1.png)
-*Install the Commity extension from VS Code marketplace*
-
-![Step 2: Configure Settings](../ss2.png)
-*Configure your OpenAI API key in VS Code settings*
-
-![Step 3: Generate Commit](../ss3.png)
-*Use the command palette to generate AI commit messages*
    - The extension will show the suggested message
    - Choose "Use This Message", "Edit Message", or "Cancel"
 

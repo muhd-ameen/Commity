@@ -2,6 +2,17 @@
 
 A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages.
 
+## 📸 Extension Flow Screenshots
+
+![Step 1: Install Extension](ss1.png)
+*Install the Commity extension from VS Code marketplace*
+
+![Step 2: Configure Settings](ss2.png)
+*Configure your OpenAI API key in VS Code settings*
+
+![Step 3: Generate Commit](ss3.png)
+*Use the command palette to generate AI commit messages*
+
 ## ✨ Features
 
 - 📖 Reads staged Git changes automatically
@@ -64,17 +75,6 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 1. **Install extension** from VS Code marketplace
 2. **Configure API key** in VS Code settings
 3. **Use command palette**: Ctrl+Shift+P → "Generate AI Commit Message"
-
-### 📸 Extension Flow Screenshots
-
-![Step 1: Install Extension](ss1.png)
-*Install the Commity extension from VS Code marketplace*
-
-![Step 2: Configure Settings](ss2.png)
-*Configure your OpenAI API key in VS Code settings*
-
-![Step 3: Generate Commit](ss3.png)
-*Use the command palette to generate AI commit messages*
 
 ### CLI Tool
 ```bash
