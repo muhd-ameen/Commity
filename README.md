@@ -29,7 +29,7 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 
 3. **Install CLI Tool**:
    ```bash
-   ./install-cli.sh
+   npm install -g commity-ai-commit-tool
    ```
 
 4. **Use from Command Line**:
@@ -40,28 +40,19 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 
 ### Method 2: CLI Only
 
-1. **Install Dependencies**:
+1. **Install CLI Tool**:
    ```bash
-   npm install
+   npm install -g commity-ai-commit-tool
    ```
 
-2. **Set up OpenAI API Key**:
+2. **Set up OpenAI API Key** (if not using VS Code extension):
    - Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-   - Copy `.env.example` to `.env`:
+   - Create `.env` file in your project:
      ```bash
-     cp .env.example .env
-     ```
-   - Add your API key to `.env`:
-     ```
-     OPENAI_API_KEY=sk-your-actual-api-key-here
+     echo "OPENAI_API_KEY=sk-your-actual-api-key-here" > .env
      ```
 
-3. **Install Globally**:
-   ```bash
-   npm link
-   ```
-
-4. **Use the Tool**:
+3. **Use the Tool**:
    ```bash
    git add <files>
    commity
@@ -69,18 +60,32 @@ A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate
 
 ## 📋 Example Usage
 
+### VS Code Extension
+1. **Install extension** from VS Code marketplace
+2. **Configure API key** in VS Code settings
+3. **Use command palette**: Ctrl+Shift+P → "Generate AI Commit Message"
+
+### CLI Tool
 ```bash
-$ node index.js
+# Install globally
+npm install -g commity-ai-commit-tool
 
+# Stage your changes
+git add .
+
+# Generate commit message
+commity
+
+# Output:
 🤖 Commity - AI Commit Tool
-
+📋 Using VS Code extension settings
 📖 Reading staged changes...
 🧠 Generating commit message with AI...
 
 💬 Suggested commit message:
 "🐛 Fix authentication validation and error handling"
 
-? What would you like to do? (Use arrow keys)
+? What would you like to do?
 ❯ Yes, use this message
   Edit the message  
   Cancel commit
@@ -110,7 +115,20 @@ The tool automatically selects appropriate emojis based on your changes:
 
 ## ⚙️ Configuration
 
-### Environment Variables
+### VS Code Extension Settings (Recommended)
+
+The CLI tool automatically reads your VS Code extension settings:
+
+1. **Open VS Code Settings**: Ctrl+, (Windows/Linux) or Cmd+, (Mac)
+2. **Search for "Commity"**
+3. **Configure**:
+   - **OpenAI API Key**: Your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+   - **OpenAI Model**: Choose your preferred model (default: gpt-4o-mini)
+   - **Enable Emojis**: Toggle emoji support (default: true)
+
+### Environment Variables (CLI Only)
+
+If not using VS Code extension, create a `.env` file:
 
 | Variable | Description | Default |
 |----------|-------------|---------|
@@ -130,13 +148,14 @@ The tool automatically selects appropriate emojis based on your changes:
 
 ```
 commity/
-├── .env              # Environment variables
-├── index.js          # Main CLI entry point
-├── ai.js            # OpenAI API integration
-├── git.js           # Git operations
-├── prompt.js        # CLI user interactions
-├── package.json     # Dependencies and scripts
-└── README.md        # This file
+├── cli-wrapper.js   # CLI wrapper with VS Code settings integration
+├── index.js         # Original CLI entry point
+├── ai.js           # OpenAI API integration
+├── git.js          # Git operations
+├── prompt.js       # CLI user interactions
+├── vscode-extension/ # VS Code extension
+├── package.json    # Dependencies and scripts
+└── README.md       # This file
 ```
 
 ### Adding Features
@@ -152,12 +171,17 @@ Each module has a single responsibility:
 
 ### Common Issues
 
+**"OpenAI API key not configured"**
+- **VS Code Extension**: Go to Settings → Commity → OpenAI API Key
+- **CLI Only**: Create `.env` file with your API key
+- Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+
 **"No staged changes found"**
 - Make sure you've staged files with `git add <files>`
 - Check `git status` to see your current repository state
 
 **"Invalid OpenAI API key"**
-- Verify your API key in the `.env` file
+- Verify your API key in VS Code settings or `.env` file
 - Ensure you have credits available in your OpenAI account
 - Check that the API key starts with `sk-`
 
