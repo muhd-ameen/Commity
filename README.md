@@ -36,7 +36,7 @@ npm install -g commity-ai-commit-tool
 
 ### 2. Setup API Key
 ```bash
-echo "OPENAI_API_KEY=sk-your-actual-api-key-here" > .env
+echo "OPENAI_API_KEY=sk-your-api-key-here" > .env
 ```
 Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
 
