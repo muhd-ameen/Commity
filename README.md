@@ -4,62 +4,68 @@
 
 # 🤖 Commity
 
-> **AI-powered Git commit messages with dynamic emoji selection**
+> **AI-powered commit messages that don’t suck. With emojis.**
 
 </div>
 
-A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages with appropriate emojis.
+Writing commit messages was killing me. So I built Commity.  
+A tiny CLI tool that looks at your staged git changes, asks OpenAI what the hell you just did, and gives you a clean, emoji’d commit line you can actually be proud of.
 
-## ✨ Features
+No more `Update` or `fixes lol`.
 
-- 🧠 **AI-Powered**: Uses OpenAI GPT models for intelligent commit messages
-- 🎯 **Dynamic Emojis**: Automatically selects appropriate emojis based on changes
-- ⚡ **Lightning Fast**: Simple CLI interface, no complex setup
-- 🔒 **Secure**: API key stored locally in `.env` file
-- 💬 **Interactive**: Confirm, edit, or cancel generated messages
-- 🎨 **Beautiful Output**: Colored CLI with clear feedback
+---
 
-## 🚀 Quick Start
+## 🧪 What it actually does
 
-### 1. Install
+- Reads your `git diff`  
+- Sends it to OpenAI  
+- Spits back a commit message that *makes sense*  
+- Drops in a matching emoji (because vibes matter)  
+- You hit enter. Boom. Committed.
+
+---
+
+## ⚡ Why it slaps
+
+- 🧠 **Smarter than you on bad days** – AI writes your commit messages  
+- 🎯 **Emoji sniper** – Tags it right: 🐛 for bugs, ✨ for features, etc.  
+- 🔒 **Safe** – Your API key stays in `.env`, not flying around  
+- 💬 **Talks to you** – Edit, confirm, cancel. Like a chill assistant.  
+- 🎨 **Sexy CLI** – Colors, prompts, feedback. Feels alive.
+
+---
+
+## 🏁 Getting Started (takes 1 min max)
+
+**1. Install**
 ```bash
 npm install -g commity-ai-commit-tool
 ```
 
-### 2. Setup API Key
+**2. Add your OpenAI key**
 ```bash
-echo "OPENAI_API_KEY=sk-your-api-key-here" > .env
-```
-Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
-
-![Step 1: Add OpenAI API Key](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss1.png)
-
-*Add your OpenAI API key to the .env file*
-
-### 3. Use
-```bash
-git add <files>
-commity
+echo "OPENAI_API_KEY=sk-..." > .env
 ```
 
-![Step 2: Use Commity CLI Command](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss2.png)
+→ Grab key from [here](https://platform.openai.com/api-keys)  
+→ Yes, free tier works too
 
-*Run the commity command in terminal*
+![Add key](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss1.png)
 
-![Step 3: Generated Commit Message](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss3.png)
-
-*View the AI-generated commit message and successful commit*
-
-## 📋 Example Usage
-
+**3. Use it**
 ```bash
-# Stage your changes
 git add .
-
-# Generate commit message
 commity
+```
 
-# Output:
+![CLI shot](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss2.png)  
+![Commit success](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss3.png)
+
+---
+
+## 🧠 Sample Output
+
+```bash
 🤖 Commity - AI Commit Tool
 📖 Reading staged changes...
 🧠 Generating commit message with AI...
@@ -75,89 +81,95 @@ commity
 ✅ Committed successfully!
 ```
 
-## 🎯 Emoji Examples
-
-The tool automatically selects emojis based on your changes:
-
-- ✨ **Features**: New functionality, additions
-- 🐛 **Bug Fixes**: Error corrections, issue resolutions  
-- 📚 **Documentation**: README, docs, comments
-- ⚡ **Performance**: Optimizations, speed improvements
-- ♻️ **Refactoring**: Code restructuring, improvements
-- 🧪 **Testing**: Test files, specs, coverage
-- ⚙️ **Configuration**: Settings, env files, configs
-- 🔒 **Security**: Authentication, vulnerabilities
-- 🎨 **UI/UX**: Styling, design changes
-- 🗄️ **Database**: Schema changes, migrations
-- 🔌 **API**: Endpoints, routes, services
-- 🚀 **Deployment**: CI/CD, builds, deployment
-- 📦 **Dependencies**: Package updates, installations
-
-## ⚙️ Configuration
-
-### Environment Variables
-
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `OPENAI_API_KEY` | Your OpenAI API key (required) | - |
-| `OPENAI_MODEL` | OpenAI model to use | `gpt-4o-mini` |
-
-### Supported Models
-
-- `gpt-4o-mini` (default, fastest and most cost-effective)
-- `gpt-4o`
-- `gpt-4-turbo`
-- `gpt-3.5-turbo`
-
-## 🔧 Troubleshooting
-
-**"OpenAI API key not found"**
-- Create `.env` file with your API key
-- Get your key from [OpenAI Platform](https://platform.openai.com/api-keys)
-
-**"No staged changes found"**
-- Use `git add <files>` to stage changes first
-
-**"Not in a Git repository"**
-- Run `git init` to initialize a repository
-
-## 🛠️ Development
-
-### Project Structure
-```
-commity/
-├── cli-wrapper.js   # Main CLI entry point
-├── ai.js           # OpenAI API integration
-├── git.js          # Git operations
-├── prompt.js       # CLI user interactions
-├── package.json    # Dependencies and scripts
-└── README.md       # This file
-```
-
-### Contributing
-
-We welcome contributions! Please feel free to submit a Pull Request.
-
-1. **Fork the repository**
-2. **Create your feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
-
-### Issues
-
-Found a bug or have a feature request? [Open an issue](https://github.com/muhd-ameen/Commity/issues)!
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Built with ❤️ using OpenAI's GPT models
-- Inspired by the need for better commit messages
-- Thanks to all contributors and users!
+You just saved 2 minutes *and* looked smart doing it.
 
 ---
 
-**Made with ❤️ by [Muhammad Ameen](https://github.com/muhd-ameen)**
+## 🔥 Emoji Mapping (Auto-detected)
+
+| Type | Emoji |
+|------|-------|
+| New Feature | ✨ |
+| Bug Fix | 🐛 |
+| Docs | 📚 |
+| Performance | ⚡ |
+| Refactor | ♻️ |
+| Tests | 🧪 |
+| Config | ⚙️ |
+| Security | 🔒 |
+| UI | 🎨 |
+| DB | 🗄️ |
+| API | 🔌 |
+| Deploy | 🚀 |
+| Packages | 📦 |
+
+---
+
+## 🛠️ Configs (Only if you’re picky)
+
+| Env Variable | What it does | Default |
+|--------------|--------------|---------|
+| `OPENAI_API_KEY` | Your OpenAI key (duh) | – |
+| `OPENAI_MODEL` | Which model to use | `gpt-4o-mini` |
+
+**Supported Models:**
+
+- `gpt-4o-mini` (default)  
+- `gpt-4o`  
+- `gpt-4-turbo`  
+- `gpt-3.5-turbo`
+
+---
+
+## 😭 If it breaks
+
+- **API key not found?** → You forgot the `.env` file  
+- **"No staged changes"?** → Run `git add .`  
+- **Not in a repo?** → `git init`, friend  
+
+---
+
+## 🧱 Code Structure (for devs)
+
+```
+commity/
+├── cli-wrapper.js   // handles terminal
+├── ai.js            // OpenAI stuff
+├── git.js           // git logic
+├── prompt.js        // CLI questions
+├── package.json     // npm life
+└── README.md        // this file
+```
+
+---
+
+## 🛠️ Wanna contribute?
+
+Yes please. PRs welcome.
+
+1. Fork it  
+2. `git checkout -b cool-feature`  
+3. Code  
+4. `git commit -m '✨ adds cool stuff'`  
+5. Open PR  
+
+Bugs? Feature ideas? → [Open an issue](https://github.com/muhd-ameen/Commity/issues)
+
+---
+
+## 📜 License
+
+MIT. Steal with style.
+
+---
+
+## ❤️ Credits
+
+- Powered by OpenAI (shoutout)
+- Inspired by late-night coding guilt
+- Built by [Muhammad Ameen](https://github.com/muhd-ameen) with coffee, rage, and love
+
+---
+
+**No more cringe commit messages. Let Commity talk.**  
+Install now → `npm install -g commity-ai-commit-tool`
