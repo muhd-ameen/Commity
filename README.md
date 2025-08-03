@@ -1,6 +1,6 @@
 <div align="center">
 
-![Commity Logo](logo.png)
+<img src="logo.png" width="100" alt="Commity Logo" />
 
 # 🤖 Commity
 
