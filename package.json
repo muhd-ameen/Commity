@@ -1,8 +1,16 @@
 {
   "name": "commity-ai-commit-tool",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "AI-powered Git commit message generator with dynamic emoji selection",
   "icon": "logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muhd-ameen/Commity.git"
+  },
+  "homepage": "https://github.com/muhd-ameen/Commity",
+  "bugs": {
+    "url": "https://github.com/muhd-ameen/Commity/issues"
+  },
   "main": "index.js",
   "type": "module",
   "bin": {

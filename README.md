@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="logo.png" width="100" alt="Commity Logo" />
+<img src="https://raw.githubusercontent.com/muhd-ameen/Commity/main/logo.png" width="100" alt="Commity Logo" />
 
 # 🤖 Commity
 
@@ -10,15 +10,15 @@
 
 A lightweight CLI tool that reads staged Git changes and uses OpenAI to generate intelligent commit messages with appropriate emojis.
 
-![Step 1: Add OpenAI API Key](ss1.png)
+![Step 1: Add OpenAI API Key](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss1.png)
 
 *Add your OpenAI API key to the .env file*
 
-![Step 2: Use Commity CLI Command](ss2.png)
+![Step 2: Use Commity CLI Command](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss2.png)
 
 *Run the commity command in terminal*
 
-![Step 3: Generated Commit Message](ss3.png)
+![Step 3: Generated Commit Message](https://raw.githubusercontent.com/muhd-ameen/Commity/main/ss3.png)
 
 *View the AI-generated commit message and successful commit*
 
