@@ -34,13 +34,13 @@ vsce publish
 Replace these placeholders:
 ```json
 {
-  "publisher": "your-actual-publisher-name",
+      "publisher": "emeenx",
   "repository": {
-    "url": "https://github.com/yourusername/commity.git"
+    "url": "https://github.com/muhd-ameen/Commity.git"
   },
-  "homepage": "https://github.com/yourusername/commity",
+  "homepage": "https://github.com/muhd-ameen/Commity",
   "bugs": {
-    "url": "https://github.com/yourusername/commity/issues"
+    "url": "https://github.com/muhd-ameen/Commity/issues"
   }
 }
 ```

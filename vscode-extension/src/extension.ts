@@ -3,7 +3,7 @@ import { generateCommitMessage } from './ai';
 import { getStagedDiff, commitChanges } from './git';
 
 export function activate(context: vscode.ExtensionContext) {
-          console.log('Commity extension is now active!');
+  console.log('Commity extension is now active!');
 
   let disposable = vscode.commands.registerCommand('commity.generateCommit', async () => {
     try {
@@ -98,4 +98,6 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(disposable);
 }
 
-export function deactivate() {} 
+export function deactivate() {
+  console.log('Commity extension is now deactivated!');
+} 

@@ -202,5 +202,6 @@ MIT License - feel free to use and modify as needed!
 - Support for conventional commit formats
 - Local AI model support (Ollama)
 - Custom prompt templates
-- VS Code extension
 - Configuration file support
+- Multi-language support
+- Git hooks integration

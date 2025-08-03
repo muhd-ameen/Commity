@@ -81,6 +81,8 @@ function activate(context) {
     context.subscriptions.push(disposable);
 }
 exports.activate = activate;
-function deactivate() { }
+function deactivate() {
+    console.log('Commity extension is now deactivated!');
+}
 exports.deactivate = deactivate;
 //# sourceMappingURL=extension.js.map

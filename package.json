@@ -1,11 +1,13 @@
 {
-  "name": "commity",
-  "version": "1.0.0",
+  "name": "commity-ai-commit-tool",
+  "version": "1.0.16",
   "description": "AI-powered Git commit message generator with dynamic emoji selection",
+  "icon": "logo.png",
   "main": "index.js",
   "type": "module",
   "bin": {
     "commity": "./cli-wrapper.js",
+    "commity-ai": "./cli-wrapper.js",
     "ai-commit": "./cli-wrapper.js"
   },
   "scripts": {
