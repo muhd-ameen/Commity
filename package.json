@@ -1,6 +1,6 @@
 {
   "name": "commity-ai-commit-tool",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "AI-powered Git commit message generator with dynamic emoji selection",
   "icon": "logo.png",
   "repository": {
