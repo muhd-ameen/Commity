@@ -4,7 +4,9 @@ import { getStagedDiff, commitChanges } from './git';
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('Commity extension is now active!');
-
+  
+  // Register the command immediately
+  console.log('Registering commity.generateCommit command...');
   let disposable = vscode.commands.registerCommand('commity.generateCommit', async () => {
     try {
       // Get configuration
@@ -96,6 +98,7 @@ export function activate(context: vscode.ExtensionContext) {
   });
 
   context.subscriptions.push(disposable);
+  console.log('Commity command registered successfully!');
 }
 
 export function deactivate() {

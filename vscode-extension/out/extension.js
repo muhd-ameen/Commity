@@ -6,6 +6,8 @@ const ai_1 = require("./ai");
 const git_1 = require("./git");
 function activate(context) {
     console.log('Commity extension is now active!');
+    // Register the command immediately
+    console.log('Registering commity.generateCommit command...');
     let disposable = vscode.commands.registerCommand('commity.generateCommit', async () => {
         try {
             // Get configuration
@@ -79,6 +81,7 @@ function activate(context) {
         }
     });
     context.subscriptions.push(disposable);
+    console.log('Commity command registered successfully!');
 }
 exports.activate = activate;
 function deactivate() {
